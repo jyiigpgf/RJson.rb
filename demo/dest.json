@@ -1,0 +1,21 @@
+{
+  "type": "container",
+  "styleBinding": {
+    "layout": "linearLayout",
+    "orientation": "horizontal"
+  },
+  "subViews": [
+    {
+      "type": "image",
+      "dataBinding": {
+        "url": "http://xxx.png"
+      }
+    },
+    {
+      "type": "label",
+      "dataBinding": {
+        "value": "hello_world"
+      }
+    }
+  ]
+}

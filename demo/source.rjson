@@ -1,0 +1,37 @@
+#def区
+
+def welcome_image_url
+	http://xxx.png
+end
+
+def welcome_image
+{
+	"type": "image",
+    "dataBinding": {
+        "url": "#{welcome_image_url}"
+    }
+}
+end
+
+def hello_world_str
+	hello_world
+end
+
+#json区
+{
+	"type": "container",
+	"styleBinding": {
+	    "layout": "linearLayout",
+	    "orientation": "horizontal"
+    },
+    "subViews" : [
+		welcome_image
+		,
+		{
+			"type": "label",
+			"dataBinding": {
+				"value": "#{hello_world_str}"
+			}
+		}
+    ]
+}
