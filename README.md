@@ -3,7 +3,14 @@ RJson.rb
 
 为json格式，提供扩展的脚本。
 
-rjson源文件:
+工作流程:
+>    1. 替换json文本的block
+>    2. 替换json文本的#{xxx}
+
+使用方式: 
+>    ruby json_conv.rb source.rjson dest.josn
+
+source.rjson:
 <pre><code>
 #def区
 
@@ -44,7 +51,7 @@ end
 }
 </code></pre>
 
-转换后输出文件:
+dest.json:
 <pre><code>
 {
   "type": "container",
