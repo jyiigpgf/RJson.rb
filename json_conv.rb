@@ -24,11 +24,10 @@ File.open(inPath, 'r') do |infile|
 
   while (line = infile.gets)
     ripLine = line.strip
-    if ripLine.start_with? '#'
-      ;
+    if ripLine.start_with?('#') && !ripLine.start_with?('#{')
     #替换def数据
     elsif !ripLine.empty? && blockData.has_key?(ripLine) && !blockStart
-      jsonData << blockData[ripLine]
+      #jsonData << blockData[ripLine]
     elsif ripLine.start_with? 'def'
       blockName = ripLine['def'.size..-1].strip
       blockData[blockName] = ''
@@ -47,9 +46,20 @@ File.open(inPath, 'r') do |infile|
 end
 
 #替换#{*}数据
-blockData.each { |key, value|
-  jsonData.gsub!('#{' + key + '}', value.strip)
-}
+while true
+  hasReplaceBlock = false
+  blockData.each do |key, value|
+    blockName = '#{' + key + '}'
+    if jsonData.include? blockName
+      hasReplaceBlock = true
+      jsonData.gsub!(blockName, value.strip)
+    end
+  end
+
+  unless hasReplaceBlock
+    break
+  end
+end
 
 outf.write JSON.pretty_generate(JSON.parse(jsonData))
 
