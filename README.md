@@ -3,6 +3,11 @@ RJson.rb
 
 为json格式，提供扩展的脚本。
 
+使用说明:
+1. 注释:每行以"#"开头为注释。
+2. 声明block:以def开头的行为block开始，end结束，def后跟block名字。
+3. 引用block:文本中出现#{block_name}，替换为声明过的block。
+
 使用方式: 
 >    ruby json_conv.rb source.rjson dest.josn
 
