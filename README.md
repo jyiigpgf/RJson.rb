@@ -3,10 +3,6 @@ RJson.rb
 
 为json格式，提供扩展的脚本。
 
-工作流程:
->    1. 替换json文本的block
->    2. 替换json文本的#{xxx}
-
 使用方式: 
 >    ruby json_conv.rb source.rjson dest.josn
 
@@ -39,7 +35,7 @@ end
 	    "orientation": "horizontal"
     },
     "subViews" : [
-		welcome_image
+		#{welcome_image}
 		,
 		{
 			"type": "label",
