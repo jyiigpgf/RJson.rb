@@ -16,6 +16,7 @@ outPath = ARGV[1]
 outf = File.open(outPath, 'w')
 jsonData = ''
 blockData = {}
+isError = false
 
 File.open(inPath, 'r') do |infile|
 
@@ -30,6 +31,12 @@ File.open(inPath, 'r') do |infile|
       #jsonData << blockData[ripLine]
     elsif ripLine.start_with? 'def'
       blockName = ripLine['def'.size..-1].strip
+      if blockData.has_key? blockName
+        puts 'redefine block'
+        isError = true
+        break;
+      end
+
       blockData[blockName] = ''
       blockStart = true
     elsif ripLine.start_with? 'end'
@@ -45,6 +52,7 @@ File.open(inPath, 'r') do |infile|
 
 end
 
+unless isError
 #替换#{*}数据
 while true
   hasReplaceBlock = false
@@ -63,5 +71,7 @@ end
 
 outf.write JSON.pretty_generate(JSON.parse(jsonData))
 
-outf.close
 puts 'convert succeed!'
+end
+
+outf.close
